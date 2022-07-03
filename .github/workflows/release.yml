@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'yarn.lock'
+      - 'envsubst-react-environment.sh'
+      - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
