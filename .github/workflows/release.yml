@@ -35,4 +35,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: rafaelcalleja/react-app-hello-world:${{ steps.release.outputs.tag }}
+          tags: |
+            rafaelcalleja/react-app-hello-world:${{ steps.release.outputs.tag }}
+            rafaelcalleja/react-app-hello-world:latest
