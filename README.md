@@ -1,6 +1,6 @@
 ### React
 _src/index.js_
-```
+```js
 const hello = process.env.REACT_APP_HELLO;
 const world = process.env.REACT_APP_WORLD;
 
@@ -11,7 +11,7 @@ root.render(
 
 ### docker
 
-```
+```bash
 docker run -it --rm \
        -p 80:80 \
        -e REACT_APP_HELLO=runtime -e REACT_APP_WORLD=replace
@@ -21,7 +21,7 @@ docker run -it --rm \
 ### kubernetes
 
 _kubernetes/pod.yaml_
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -41,7 +41,7 @@ spec:
           protocol: TCP 
 ```
 
-```
+```bash
 kubectl -n test apply -f kubernetes/pod.yaml 
 ```
 
