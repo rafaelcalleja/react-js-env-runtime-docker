@@ -14,8 +14,8 @@ root.render(
 ```bash
 docker run -it --rm \
        -p 80:80 \
-       -e REACT_APP_HELLO=runtime -e REACT_APP_WORLD=replace
-       react-app-production-build:latest
+       -e REACT_APP_HELLO=runtime -e REACT_APP_WORLD=replace \
+       docker.io/rafaelcalleja/react-app-hello-world:latest
 ```
 
 ### kubernetes
@@ -29,7 +29,7 @@ metadata:
 spec:
   containers:
     - name: web
-      image: react-app-production-build:latest
+      image: docker.io/rafaelcalleja/react-app-hello-world:latest
       env:
         - name: REACT_APP_HELLO
           value: "runtime"
