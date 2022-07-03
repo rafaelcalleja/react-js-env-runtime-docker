@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-hello-world
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: docker.io/rafaelcalleja/react-app-hello-world:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REACT_APP_HELLO
+              value: "runtime"
+            - name: REACT_APP_WORLD
+              value: "replace"
+          ports:
+            - containerPort: 80
+              protocol: TCP
