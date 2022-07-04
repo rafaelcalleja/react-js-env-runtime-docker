@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "80:80"
+    environment:
+      REACT_APP_HELLO: hi
+      REACT_APP_WORLD: react
