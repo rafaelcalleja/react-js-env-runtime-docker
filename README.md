@@ -18,6 +18,12 @@ docker run -it --rm \
        docker.io/rafaelcalleja/react-app-hello-world:latest
 ```
 
+### html render output
+
+```
+runtime, replace
+```
+
 ### how it works - [Dockerfile](https://github.com/rafaelcalleja/react-js-env-runtime-docker/tree/master/react-nginx/Dockerfile)
 #### create .env file during build phase setting value as environment variable name to later replace it using envsubst  
 ```Dockerfile
@@ -65,10 +71,4 @@ spec:
 
 ```bash
 kubectl -n test apply -f kubernetes/pod.yaml 
-```
-
-### html render output
-
-```
-runtime, replace
 ```
