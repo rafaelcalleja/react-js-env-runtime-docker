@@ -18,6 +18,28 @@ docker run -it --rm \
        docker.io/rafaelcalleja/react-app-hello-world:latest
 ```
 
+### how it works - [Dockerfile](https://github.com/rafaelcalleja/react-js-env-runtime-docker/tree/master/react-nginx/Dockerfile)
+#### create .env file during build phase setting value as environment variable name to later replace it using envsubst  
+```Dockerfile
+# define runtime variables as VAR=\${VAR}
+ENV REACT_APP_HELLO "\\\${REACT_APP_HELLO}"
+ENV REACT_APP_WORLD "\\\${REACT_APP_WORLD}"
+
+# create react app production build
+RUN rm -f .env* ; \
+    printenv > .env && \
+    yarn build
+```
+
+#### FROM nginx image create an entrypoint to replace text ${VAR} in builded js files using environment variables values with envsubst command at runtime 
+```Dockerfile
+#create nginx entrypoint to replace environment variables in build js at runtime
+RUN echo "\
+export ENV_LIST=\"\$(printenv | awk -F= '{print $1}' | sed 's/^/\$/g' | paste -sd,)\"; \
+find /usr/share/nginx/html/static/ -type f -name \"*.js\"| \
+xargs -I % sh -c 'envsubst \"\${ENV_LIST}\" < \"%\" > \"%.tmp\" && mv \"%.tmp\" \"%\"'" \
+> /docker-entrypoint.d/40-envsubst-react-environment.sh && chmod +x /docker-entrypoint.d/40-envsubst-react-environment.sh
+```
 ### kubernetes
 
 _kubernetes/pod.yaml_
