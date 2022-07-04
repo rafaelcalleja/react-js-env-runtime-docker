@@ -5,12 +5,12 @@ on:
     branches:
       - master
     paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'yarn.lock'
-      - 'envsubst-react-environment.sh'
-      - 'Dockerfile'
+      - 'react-nginx-auto-discover-vars/src/**'
+      - 'react-nginx-auto-discover-vars/public/**'
+      - 'react-nginx-auto-discover-vars/package.json'
+      - 'react-nginx-auto-discover-vars/yarn.lock'
+      - 'react-nginx-auto-discover-vars/envsubst-react-environment.sh'
+      - 'react-nginx-auto-discover-vars/Dockerfile'
   workflow_dispatch:
 
 jobs:
